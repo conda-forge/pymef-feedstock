@@ -6,7 +6,7 @@ conda_build:
   error_overlinking: true
 conda_forge_output_validation: true
 provider:
-  osx_arm64: azure
+  osx_arm64: default
 bot:
   automerge: true
 build_platform:
