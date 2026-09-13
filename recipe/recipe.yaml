@@ -16,7 +16,7 @@ source:
   sha256: 242074b714a0762cd1cc6ec2447c662f7a46dbddbfe49f2af0abff93ff08bb96
 
 build:
-  number: 1
+  number: 2
   script:
     # The vendored meflib C is compiled straight into the extension and contains
     # ~100 type-punning pointer casts; upstream also hardcodes -O3.
