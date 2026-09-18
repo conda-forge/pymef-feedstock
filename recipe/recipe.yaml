@@ -24,8 +24,13 @@ build:
     # pymef3_file.h declares its create_*_dtype helpers with an empty parameter
     # list and registers them as METH_VARARGS. GCC >=14 rejects that outright,
     # so keep it a warning until upstream fixes the prototypes.
+    #
+    # meflib's si1 type is plain char but holds signed values (RED compression
+    # byte differences, encryption levels), and char is unsigned on Linux
+    # aarch64/ppc64le, which corrupts reads/writes there. Force it signed until
+    # upstream setup.py does so.
     - if: unix
-      then: export CFLAGS="${CFLAGS} -fno-strict-aliasing -Wno-error=incompatible-pointer-types"
+      then: export CFLAGS="${CFLAGS} -fno-strict-aliasing -Wno-error=incompatible-pointer-types -fsigned-char"
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
